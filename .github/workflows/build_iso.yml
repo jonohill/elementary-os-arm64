@@ -27,9 +27,8 @@ jobs:
         run: |
           cp build.conf os/build.conf
           cd os
-          ls -thral
           docker run --privileged --platform linux/arm64 -v /proc:/proc \
             -v ${PWD}:/working_dir \
             -w /working_dir \
             debian:latest \
-            /bin/bash -s build.conf < build.sh
+            ./build.sh build.conf
