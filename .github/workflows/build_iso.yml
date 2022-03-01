@@ -32,3 +32,4 @@ jobs:
             -w /working_dir \
             debian:latest \
             ./build.sh build.conf
+          tree || ls -thral
