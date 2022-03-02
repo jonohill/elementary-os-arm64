@@ -23,13 +23,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build and push
-        run: |
-          cp build.conf os/build.conf
-          cd os
-          docker run --privileged --platform linux/arm64 -v /proc:/proc \
-            -v ${PWD}:/working_dir \
-            -w /working_dir \
-            debian:latest \
-            ./build.sh build.conf
-          tree || ls -thral
+      - name: Build
+        run: ./build.sh
+
+      - name: GH Release
+        uses: softprops/action-gh-release@v0.1.14
+        with:
+          files: |
+            os/builds/arm64/*.iso
