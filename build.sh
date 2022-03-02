@@ -9,6 +9,10 @@ cd os
 # shellcheck disable=SC2016
 sed -i 's/".*mirrors.ubuntu.com.*"/"\$MIRROR_URL"/g' etc/auto/config
 
-sudo ./build.sh build.conf
+docker run --privileged --platform linux/arm64 -v /proc:/proc \
+    -v "$(pwd):/working_dir" \
+    -w /working_dir \
+    debian:latest \
+    ./build.sh build.conf
 
 cd ..
