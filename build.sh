@@ -14,7 +14,7 @@ packages=(bcmwl-kernel-source intel-microcode iucode-tool lupin-support securebo
 pool_files=(etc/config/package-lists.default/pool.list.binary etc/config/package-lists.distinst/pool.list.binary)
 for package in "${packages[@]}"; do
     for pool_file in "${pool_files[@]}"; do
-        sed -i '' "/^${package}/d" "${pool_file}"
+        sed -i "/^${package}/d" "${pool_file}"
         
         # Insert ARM-specific packages
         cat <<EOF >> "${pool_file}"
