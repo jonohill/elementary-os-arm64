@@ -7,7 +7,7 @@ cd os
 
 # Patch out mirror config because many don't have arm binaries
 # shellcheck disable=SC2016
-sed -i '' 's/".*mirrors.ubuntu.com.*"/"\$MIRROR_URL"/g' etc/auto/config
+sed -i 's/".*mirrors.ubuntu.com.*"/"\$MIRROR_URL"/g' etc/auto/config
 
 # Remove packages unavailable for ARM
 packages=(bcmwl-kernel-source intel-microcode iucode-tool lupin-support secureboot-db)
