@@ -9,16 +9,25 @@ on:
       - main
 
 jobs:
-  main:
+
+  arm_runner:
     runs-on: ubuntu-latest
+    steps:
+      - name: Start arm64 runner
+        run: |
+          curl -vfs https://circleci.com/api/v2/project/gh/jonohill/circle-gh-runner/pipeline \
+            -H 'Accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -H 'Circle-Token: ${{ secrets.CCI_TOKEN }}' \
+            --data-binary '{ "branch": "main", "parameters": { "GH_REPO": "${{ github.repository }}" } }'
+
+  main:
+    runs-on: [self-hosted, linux, arm64]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           submodules: recursive
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
