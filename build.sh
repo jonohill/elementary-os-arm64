@@ -10,7 +10,7 @@ cd os
 sed -i 's/".*mirrors.ubuntu.com.*"/"\$MIRROR_URL"/g' etc/auto/config
 
 # Set bootloader (required because arm64?)
-sed -i 's/"${@}"/--bootloader syslinux "${@}"/g' etc/auto/config
+sed -i 's/"${@}"/--bootloader grub-efi "${@}"/g' etc/auto/config
 
 # Remove packages unavailable for ARM
 packages=(bcmwl-kernel-source intel-microcode iucode-tool lupin-support secureboot-db)
