@@ -9,6 +9,9 @@ cd os
 # shellcheck disable=SC2016
 sed -i 's/".*mirrors.ubuntu.com.*"/"\$MIRROR_URL"/g' etc/auto/config
 
+# Set bootloader (required because arm64?)
+sed -i 's/"${@}"/--bootloader syslinux "${@}"/g' etc/auto/config
+
 # Remove packages unavailable for ARM
 packages=(bcmwl-kernel-source intel-microcode iucode-tool lupin-support secureboot-db)
 pool_files=(etc/config/package-lists.default/pool.list.binary etc/config/package-lists.distinst/pool.list.binary)
