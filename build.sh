@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -ex
 
 cp build.conf os/build.conf
 cd os
@@ -14,7 +14,7 @@ sed -i 's/"${@}"/--bootloader grub-efi "${@}"/g' etc/auto/config
 
 # Remove packages unavailable for ARM
 packages=(bcmwl-kernel-source intel-microcode iucode-tool lupin-support secureboot-db)
-pool_files=(etc/config/package-lists.default/pool.list.binary etc/config/package-lists.distinst/pool.list.binary)
+pool_files=(etc/config/package-lists/pool.list.binary)
 for package in "${packages[@]}"; do
     for pool_file in "${pool_files[@]}"; do
         sed -i "/^${package}/d" "${pool_file}"
