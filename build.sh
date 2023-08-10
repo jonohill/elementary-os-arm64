@@ -5,9 +5,9 @@ set -ex
 cp build.conf os/build.conf
 cd os
 
-# Patch out mirror config because many don't have arm binaries
+# Use ubuntu ports server, main server does not have arm64
 # shellcheck disable=SC2016
-sed -i 's/".*mirrors.ubuntu.com.*"/"\$MIRROR_URL"/g' etc/auto/config
+sed -i 's/".*ubuntu.com.*"/"\$MIRROR_URL"/g' etc/auto/config
 
 # Set bootloader (required because arm64?)
 sed -i 's/"${@}"/--bootloader grub-efi "${@}"/g' etc/auto/config
