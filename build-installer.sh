@@ -17,6 +17,7 @@ git config --global --add safe.directory /__w/installer/installer
 
 cd installer
 pwd
+git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 git fetch --all
 git branch -a
 git checkout 1.1.0
