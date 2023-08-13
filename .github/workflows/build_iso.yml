@@ -21,6 +21,27 @@ jobs:
             -H 'Circle-Token: ${{ secrets.CCI_TOKEN }}' \
             --data-binary '{ "branch": "main", "parameters": { "GH_REPO": "${{ github.repository }}" } }'
 
+  build-installer:
+    runs-on: [self-hosted, linux, arm64]
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: build (in container)
+        run: |
+          docker build -t installer -f Dockerfile.installer .
+
+      - name: Grab built debs
+        run: |
+          docker run --rm -v $PWD:/mnt installer cp -r /output /mnt
+
+      - name: Save .deb packages
+        uses: actions/upload-artifact@v2
+        with:
+          name: deb-files
+          path: "*.deb"
+
   build:
     runs-on: [self-hosted, linux, arm64]
     steps:
