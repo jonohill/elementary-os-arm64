@@ -34,7 +34,7 @@ jobs:
 
       - name: Build installer (in container)
         run: |
-          docker build -t installer -f Dockerfile.installer .
+          docker build --security-opt seccomp=unconfined -t installer -f Dockerfile.installer .
 
       - name: Grab built debs
         run: |
