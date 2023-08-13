@@ -40,7 +40,7 @@ jobs:
             ubuntu:22.04 \
             ./build-installer.sh
           mkdir -p os/etc/config/packages.chroot
-          cp installer/*.deb os/etc/config/packages.chroot
+          cp *.deb os/etc/config/packages.chroot
 
       - name: Build ISO
         run: ./build.sh

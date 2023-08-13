@@ -16,6 +16,9 @@ git config --global --add safe.directory "$(pwd)/installer"
 git config --global --add safe.directory /__w/installer/installer
 
 cd installer
+pwd
+git branch -a
+git checkout 1.1.0
 git checkout origin/deb-packaging -- debian
 
 sed -i 's/amd64/arm64/g' debian/control
