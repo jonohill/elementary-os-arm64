@@ -38,7 +38,7 @@ jobs:
             -v "$(pwd):/working_dir" \
             -w /working_dir \
             ubuntu:22.04 \
-            ./build-installer.sh
+            ../build-installer.sh
           mkdir -p os/etc/config/packages.chroot
           cp installer/*.deb os/etc/config/packages.chroot
 
