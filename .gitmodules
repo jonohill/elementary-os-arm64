@@ -1,3 +1,6 @@
 [submodule "os"]
 	path = os
 	url = https://github.com/elementary/os.git
+[submodule "installer"]
+	path = installer
+	url = https://github.com/elementary/installer.git
