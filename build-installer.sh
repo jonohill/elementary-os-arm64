@@ -17,6 +17,7 @@ git config --global --add safe.directory /__w/installer/installer
 
 cd installer
 pwd
+git fetch --all
 git branch -a
 git checkout 1.1.0
 git checkout origin/deb-packaging -- debian
