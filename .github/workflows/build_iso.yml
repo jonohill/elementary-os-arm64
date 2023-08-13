@@ -32,17 +32,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Build installer (in container)
+      - name: Build installer
         run: |
-          docker build --security-opt seccomp=unconfined -t installer -f Dockerfile.installer .
-
-      - name: Grab built debs
-        run: |
-          docker run --rm -v $PWD:/mnt installer cp -r /output /mnt
+          ./build-installer.sh
           mkdir -p os/etc/config/packages.chroot
-          cp *.deb os/etc/config/packages.chroot
+          cp installer/*.deb os/etc/config/packages.chroot
 
-      - name: Build
+      - name: Build ISO
         run: ./build.sh
 
       - uses: actions/upload-artifact@v3
