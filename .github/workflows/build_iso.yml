@@ -41,6 +41,7 @@ jobs:
             ./build-installer.sh
           mkdir -p os/etc/config/packages.chroot
           cp *.deb os/etc/config/packages.chroot
+          ls -l os/etc/config/packages.chroot
 
       - name: Build ISO
         run: ./build.sh
