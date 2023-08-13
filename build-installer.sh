@@ -14,6 +14,8 @@ apt-get update
 
 git config --global --add safe.directory /working_dir
 git config --global --add safe.directory /__w/installer/installer
+pwd
+git branch -a
 git checkout origin/deb-packaging -- debian
 
 sed -i 's/amd64/arm64/g' debian/control
