@@ -34,7 +34,11 @@ jobs:
 
       - name: Build installer
         run: |
-          ./build-installer.sh
+          docker run --privileged --platform linux/arm64 -v /proc:/proc \
+            -v "$(pwd):/working_dir" \
+            -w /working_dir \
+            ubuntu:22.04 \
+            ./build-installer.sh
           mkdir -p os/etc/config/packages.chroot
           cp installer/*.deb os/etc/config/packages.chroot
 
