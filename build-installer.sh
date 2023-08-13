@@ -12,7 +12,7 @@ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 63C46DF0140D738961429F4
 add-apt-repository "deb http://apt.pop-os.org/release $(lsb_release -cs) main"
 apt-get update
 
-git config --global --add safe.directory ./installer
+git config --global --add safe.directory "$(pwd)/installer"
 git config --global --add safe.directory /__w/installer/installer
 
 cd installer
